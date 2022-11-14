@@ -10,6 +10,7 @@ project(intro_tutorial)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -46,11 +47,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  msg1.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -67,10 +67,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -106,6 +106,7 @@ catkin_package(
 #  LIBRARIES intro_tutorial
 #  CATKIN_DEPENDS roscpp std_msgs
 #  DEPENDS system_lib
+  CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -204,7 +205,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-
+# First tutorial
 add_executable(example1_a src/example1_a.cpp)
 add_executable(example1_b src/example1_b.cpp)
 
@@ -213,3 +214,13 @@ add_dependencies(example1_b intro_tutorial_generate_messages_cpp)
 
 target_link_libraries(example1_a ${catkin_LIBRARIES})
 target_link_libraries(example1_b ${catkin_LIBRARIES})
+
+# Second tutorial
+add_executable(example2_a src/example2_a.cpp)
+add_executable(example2_b src/example2_b.cpp)
+
+add_dependencies(example2_a intro_tutorial_generate_messages_cpp)
+add_dependencies(example2_b intro_tutorial_generate_messages_cpp)
+
+target_link_libraries(example2_a ${catkin_LIBRARIES})
+target_link_libraries(example2_b ${catkin_LIBRARIES})
