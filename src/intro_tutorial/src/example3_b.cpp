@@ -9,13 +9,17 @@ int main(int argc, char **argv) {
         return 1;
     }
     ros::NodeHandle n;
-    ros::ServiceClient client =
-    n.serviceClient<intro_tutorial::srv1>("add_3_ints");
+
+    // subscribe to the server service
+    ros::ServiceClient client = n.serviceClient<intro_tutorial::srv1>("add_3_ints");
+
+    // declare our custom service and take values
     intro_tutorial::srv1 srv;
     srv.request.A = atoll(argv[1]);
     srv.request.B = atoll(argv[2]);
     srv.request.C = atoll(argv[3]);
     
+    // send request and get response
     if (client.call(srv)) {
         ROS_INFO("Sum: %ld", (long int)srv.response.sum);
     } else {
