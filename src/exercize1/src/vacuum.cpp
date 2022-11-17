@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include "exercize1/room.h"
+#include "exercise1/room.h"
 #include <sstream>
 #include <vector>
 
@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
     ros::NodeHandle n;
 
-    ros::Publisher p = n.advertise<exercize1::room>("message", 1000);
+    ros::Publisher p = n.advertise<exercise1::room>("message", 1000);
 
     ros::Rate loop_rate(5);
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     int battery = 100;
 
     while(ros::ok()) {
-        exercize1::room msg;
+        exercise1::room msg;
 
         msg.ID = ID;
         msg.name = room_name;
