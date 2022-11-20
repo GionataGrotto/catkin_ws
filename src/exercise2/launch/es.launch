@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+<node name ="vacuum" pkg="exercise2" type="vacuum" output="screen">
+</node>
+
+<node name ="station1" pkg="exercise2" type="station" output="screen">
+    <param name ="ID" value ="423"/>
+    <param name ="freq" value ="0.1"/>
+</node>
+
+<node name ="station2" pkg="exercise2" type="station" output="screen">
+    <param name ="ID" value ="424"/>
+    <param name ="freq" value ="0.5"/>
+</node>
+
+<node name ="station3" pkg="exercise2" type="station" output="screen">
+    <param name ="ID" value ="425"/>
+    <param name ="freq" value ="2"/>
+</node>
+
+<node name ="station4" pkg="exercise2" type="station" output="screen">
+    <param name ="ID" value ="427"/>
+    <param name ="freq" value ="0.4"/>
+</node>
+
+</launch>

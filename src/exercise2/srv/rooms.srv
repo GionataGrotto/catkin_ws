@@ -1,0 +1,5 @@
+int32 ID_station
+---
+int32 ID
+string name
+int32 battery
