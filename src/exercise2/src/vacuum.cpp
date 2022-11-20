@@ -12,6 +12,10 @@ bool state(exercise2::rooms::Request &req, exercise2::rooms::Response &res, int 
     res.name = name_room;
     res.battery = battery;
 
+    // not used
+    res.h.stamp = ros::Time::now();
+    res.h.frame_id = "vacuum";
+
     ROS_INFO("sending back response to station number: [%d]", req.ID_station);
     return true;
 }
@@ -78,7 +82,7 @@ int main(int argc, char **argv) {
     ros::ServiceServer service = n.advertiseService<exercise2::rooms::Request,exercise2::rooms::Response>("vacuum_serv", boost::bind(state, _1, _2, boost::ref(current_room), boost::ref(name_room), boost::ref(battery)));
 
     while (ros::ok()) {
-        
+
         update_state(current_room,name_room,battery,rooms,possibilities, start);
 
         ros::spinOnce();

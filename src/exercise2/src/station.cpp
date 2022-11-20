@@ -27,6 +27,10 @@ int main(int argc, char **argv) {
     while(ros::ok()) {
         exercise2::rooms srv;
         srv.request.ID_station = ID;
+
+        // not used
+        srv.request.h.stamp = ros::Time::now();
+        srv.request.h.frame_id = name_node;
         
         if (client.call(srv)) {
             ROS_INFO("The vacuum current state is: room ID = %d, room name = %s, battery level = %d", 

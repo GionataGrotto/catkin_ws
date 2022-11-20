@@ -1,5 +1,7 @@
 int32 ID_station
+std_msgs/Header h
 ---
+std_msgs/Header h
 int32 ID
 string name
 int32 battery
