@@ -1,0 +1,8 @@
+std_msgs/Header h
+int32 battery
+---
+std_msgs/Header h
+bool success
+---
+std_msgs/Header h
+int32 current_battery
