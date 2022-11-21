@@ -37,9 +37,10 @@ public:
 
         // to check if the action succeeded
         bool success = true;
+        
+        // initial battery feedback
         feedback_.current_battery = low_battery_level;
-        feedback_.h.stamp = ros::Time::now();
-        feedback_.h.frame_id = "The vacuum will be rechared in " + std::to_string(counter_difference--) + " timestep";
+
         for (int i = 0; i < difference_form_goal; i++) {
             if (as_.isPreemptRequested() || !ros::ok()) {
                 ROS_INFO("%s: Preempted", action_name_.c_str());
@@ -47,12 +48,18 @@ public:
                 success = false;
                 break;
             }
+            // feedback
             feedback_.current_battery += 1;
             feedback_.h.stamp = ros::Time::now();
             feedback_.h.frame_id = "The vacuum will be rechared in " + std::to_string(counter_difference--) + " timestep";
+            
+            // publish feedback
             as_.publishFeedback(feedback_);
+
             loop_rate.sleep();
         }
+
+        // set results
         result_.success = success;
         result_.h.stamp = ros::Time::now();
         if (success) {
@@ -66,12 +73,12 @@ public:
 };
 
 int main(int argc, char **argv) {
+
     ros::init(argc, argv, "vacuum");
 
     ChargerAction charger("charger");
 
     ros::spin();
-
 
     return 0;
 }
